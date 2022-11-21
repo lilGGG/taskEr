@@ -5,6 +5,8 @@ import { fetchCategories, fetchCategory } from '../actions/categoriesActions';
 import {store}  from "../store"
 import { bindActionCreators } from 'redux';
 import { actionCreators } from "../index";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 
 
 const Categories= ({store}) =>  {
@@ -19,13 +21,44 @@ const Categories= ({store}) =>  {
     fetchCategories();
   },[])
 
-
    return (
     <>
       {/* <button onClick={() => dispatch({ type: 'FETCH_CATEGORIES' })}> fetch</button> */}
-      {state.items.map((item)=> (
-        <p key={item.id}> {item.name}  </p>
-      ))}
+      <nav>
+        <ul> 
+        {state.items.map((itm)=> (
+          <> 
+            <button onClick={() => fetchCategory(itm.id)} key={itm.id}>
+               {itm.name}  
+            </button>
+            {/* <img src={fetchCategory(item.id).url}/> */}
+         
+          </>
+          // <li>
+          //   <Link key={item.id} to="/">{item.name} </Link>
+          // </li>
+        ))}
+
+       </ul>
+      </nav> 
+
+      <img src={state.item.url}/>
+
+      {/* <nav>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/blogs">Blogs</Link>
+          </li>
+          <li>
+            <Link to="/contact">Contact</Link>
+          </li>
+        </ul>
+      </nav> */}
+
+      <Outlet />
     </>
   )
 }

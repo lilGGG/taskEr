@@ -5,6 +5,7 @@ import {Provider} from 'react-redux';
 import Categories from './components/categories';
 import reducer from './reducers/index';
 import store  from "./store.js";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 
 function App() {

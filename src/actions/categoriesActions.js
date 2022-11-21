@@ -7,7 +7,7 @@ export const  fetchCategories = () => dispatch => {
         .then(posts => dispatch({
             type: FETCH_CATEGORIES,
             payload:posts
-        }) );
+        }));
 };
 
 export  const  fetchCategory = (category_id) => dispatch => {
