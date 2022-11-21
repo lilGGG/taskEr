@@ -11,9 +11,7 @@ function App() {
   return (
     <Provider store={store}> 
       <div className="App">
-        hel
         <Categories store={store} /> 
-        {/* categories={} onClick={} */}
       </div>
     </Provider>
   );
