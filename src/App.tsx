@@ -6,6 +6,7 @@ import Categories from './components/categories';
 import reducer from './reducers/index';
 import store  from "./store.js";
 
+
 function App() {
   return (
     <Provider store={store}> 

@@ -1,24 +1,49 @@
 import React, {useEffect, useState} from 'react';
 import propTypes from 'prop-types';
 import { connect, useSelector, useDispatch } from 'react-redux';
-import { fetchCategories } from '../actions/categoriesActions';
+import { fetchCategories, fetchCategory } from '../actions/categoriesActions';
 // import { useSelector } from 'react-redux'
+import {store}  from "../store"
+// import { useSelector } from "react-redux"
+// import { useDispatch } from "react-redux";
+import { bindActionCreators } from 'redux';
+import { actionCreators } from "../index";
+
+// import { actionCreators } from "../actions/categoriesActions";
+
 
 const Categories= ({store}) =>  {
-  const dispatch = useDispatch()
-  const [categoriesF, setCategoriesF] = useState({});
-  const selRes=  useSelector((state) => state.items)
+
+  const state = useSelector((state) => state.posts);
+
+  const dispatch = useDispatch();
+
+  const { fetchCategories, fetchCategory } = bindActionCreators(actionCreators, dispatch);
+ 
+  const [categoriesF, setCategoriesF] = useState([]);
+  // const selRes = useSelector((state) => state.items)
+  const [cat, setCat] = useState({});
 
   useEffect(() => {
-    // fetchCategories();
-    // console.log(selRes)
+    console.log("state", state);
+    fetchCategories();
+    setCategoriesF(fetchCategories());
+    console.log("categoriesF", categoriesF);
+    // console.log(selRes, "selRes")
     // // console.log("categoriesF", categories)
     // setCategoriesF(selRes)
     // this.props.store.dispatch(fetchCategories())
-    setCategoriesF(dispatch(fetchCategories()));
-    console.log(categoriesF)
+
+
+    // const state = store.getState();
+    // setCat(state.categories);
+    // console.log("cat", cat)
+    // setCategoriesF(dispatch(fetchCategories()));
+    // console.log(categoriesF)
+
+
     // console.log(props.store.dispatch(fetchCategories()))
-  })
+  },[])
 
   // const postItems = store.items.map(cat => (
   //   <div key = {cat.id}> 
@@ -29,13 +54,17 @@ const Categories= ({store}) =>  {
    return (
     <>
       {/* {postItems} */}
-      <button onClick={() => dispatch({ type: 'FETCH_CATEGORIES' })}> fetch</button>
-     { store.items.map((category, index) => (
-        //  "hello"
+      {/* <button onClick={() => fetchCategories()}>  fetch all </button> */}
+      {/* <p> {state.items} </p> */}
+      {/* <button onClick={() => dispatch({ type: 'FETCH_CATEGORIES' })}> fetch</button> */}
+      {state.items.map((item)=> (
+        <p> {item.name}  </p>
+         
+      ))}
+     {/* {categoriesF[0].name} */}
+     {/* { fetchCategories().map((category, index) => (        
           <p> {category.name}  </p>
-        //  {category.name}
-        // <Task key= {index}  task = {task}  onDelete={onDelete} onToggle= {onToggle} />
-     ))}
+     ))} */}
     </>
   )
 }
