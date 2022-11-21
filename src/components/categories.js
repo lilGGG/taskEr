@@ -31,18 +31,22 @@ const Categories= ({store}) =>  {
             <button onClick={() => fetchCategory(itm.id)} key={itm.id}>
                {itm.name}  
             </button>
-            {/* <img src={fetchCategory(item.id).url}/> */}
-         
+            <div> 
+              <img src={state.item[0].url}/>  
+              <img src={state.item[1].url}/>  
+            </div>
           </>
           // <li>
           //   <Link key={item.id} to="/">{item.name} </Link>
           // </li>
         ))}
 
+         
+
        </ul>
       </nav> 
 
-      <img src={state.item.url}/>
+      {/* <img src={state.item.url}/> */}
 
       {/* <nav>
         <ul>
